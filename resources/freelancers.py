@@ -41,11 +41,7 @@ class Item(Resource):
     def get(self, link_id):
         item = ItemModel.find_by_name(link_id)
         if item:
-            display_string = f"""<h2>{item['nickname']}'s Profile: </h2>\
-            Hourly Wage: ${item['hourly_wage']} <br>\
-            Type: {item['type']} <br>\
-            Experience: {item['experience']} <br> """
-            return display_string, 200
+            return item.json()
         else:
             return f'{link_id} not found', 404
 

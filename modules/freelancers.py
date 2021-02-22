@@ -16,6 +16,9 @@ class ItemModel(db.Model):
         self.type = type
         self.experience = experience
 
+    def json(self):
+        return {"nickname": self.nickname, "hourly_wage": self.hourly_wage, "type": self.type, "experience": self.experience}
+
     @classmethod
     def find_by_name(cls, nickname):
         return cls.query.filter_by(nickname=nickname).first()

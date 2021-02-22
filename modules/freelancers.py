@@ -10,8 +10,7 @@ class ItemModel(db.Model):
     type = db.Column(db.String(50))
     experience = db.Column(db.String(25))
 
-    def __init__(self, _id, nickname, hourly_wage, type, experience):
-        self.id = _id
+    def __init__(self, nickname, hourly_wage, type, experience):
         self.nickname = nickname
         self.hourly_wage = hourly_wage
         self.type = type

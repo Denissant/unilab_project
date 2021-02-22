@@ -19,6 +19,6 @@ class RegisterUser(Resource):
         if found:
             return f"""Username "{received_data['username']}" is already taken""", 400
         else:
-            new_user = User(1, **received_data)     # id should be fixed, (data['username'], data['password']) LATER
+            new_user = User(**received_data)     # id should be fixed, (data['username'], data['password']) LATER
             new_user.add()
             return f'Successfully registered: {received_data}', 201

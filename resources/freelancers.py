@@ -56,7 +56,7 @@ class Item(Resource):
             return f"""Nickname "{item.nickname}" is already used""", 400
         else:
             received_data = Item.item_parser.parse_args()
-            item = ItemModel(1, **received_data)    # id should be fixed
+            item = ItemModel(**received_data)    # id should be fixed
 
             item.save_to_db()
             return {"message": f'added {received_data}'}, 200
@@ -71,7 +71,7 @@ class Item(Resource):
             item.type = received_data['type']
             item.experience = received_data['experience']
         else:
-            item = ItemModel(1, **received_data)    # id should be fixed
+            item = ItemModel(**received_data)    # id should be fixed
         print(item)
         item.save_to_db()
         return received_data, 200

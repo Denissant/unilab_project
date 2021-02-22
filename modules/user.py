@@ -5,10 +5,9 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
-    password = db.Column(db.String(16), unique=True, nullable=False)
+    password = db.Column(db.String(16), nullable=False)
 
-    def __init__(self, _id, username, password):
-        self.id = _id
+    def __init__(self, username, password):
         self.username = username
         self.password = password
 

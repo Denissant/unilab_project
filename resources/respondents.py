@@ -3,6 +3,7 @@ from flask_jwt import jwt_required
 from modules.respondents import ItemModel
 from modules.parsing import cv_parse
 
+
 class ItemList(Resource):
     def get(self):
         all_items = ItemModel.cv_list()
@@ -71,16 +72,17 @@ class Item(Resource):
                              help='"type" is required and should be string type')
 
     def get(self, link_id):
-            item = ItemModel.find_by_name(link_id)
-            if item:
-                return {"message": f'requested CV: {item.json()}'}, 200
-            return f'{link_id} not found', 404
+        item = ItemModel.find_by_name(link_id)
+        if item:
+            return {"message": f'requested CV: {item.json()}'}, 200
+        return f'{link_id} not found', 404
 
     @jwt_required()
     def post(self, link_id):
+        received_data = Item.item_parser.parse_args()
+        received_data = cv_parse(received_data)
+
         try:
-            received_data = Item.item_parser.parse_args()
-            received_data = cv_parse(received_data)
             item = ItemModel.find_by_name(received_data['name'])
             if item:
                 return {"error_message": "There's someone with the same name. Please enter a number after your name (e.g. John Smith 2)"}, 400

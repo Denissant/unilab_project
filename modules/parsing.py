@@ -1,4 +1,9 @@
 def cv_parse(data):
+    """
+    contains a formula to calculate each respondent's rating
+    determines whether their characteristics fit the requirements and stores the result into 'satisfied' variable
+    """
+
     rating = 0
     good_qualities = ['teamwork', 'leadership', 'planning', 'negotiating', 'coaching']
     bad_buzzwords = ['creative', 'motivated', 'hard worker']
@@ -10,6 +15,7 @@ def cv_parse(data):
         data.update({'satisfied': False})
     else:
         data.update({'satisfied': True})
+
     if data['last_position'].find('manager') > -1:
         rating += 3
     if data['bachelors_uni_faculty'].find('management') > -1:

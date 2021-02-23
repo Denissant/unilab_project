@@ -41,7 +41,7 @@ class ItemModel(db.Model):
 
     @classmethod
     def cv_list(cls):
-        return {"all received CVs:":list(map(lambda cv: cv.json(), cls.query.all()))}
+        return {"all received CVs:": list(map(lambda cv: cv.json(), cls.query.all()))}
 
     @classmethod
     def find_by_name(cls, name):

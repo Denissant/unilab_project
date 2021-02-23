@@ -3,7 +3,7 @@ from flask_restful import Api
 from flask_jwt import JWT
 from security import authentication, identity
 from resources.user import RegisterUser
-from resources.respondents import Item, ItemList
+from resources.applicants import Item, ItemList
 
 
 app = Flask(__name__)
